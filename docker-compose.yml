@@ -1,0 +1,12 @@
+services:
+  api:
+    build: ./api
+    container_name: ${PROJECT_NAME}_api
+    hostname: ${PROJECT_NAME}_api
+    user: 1000:1000
+    command: sh -c 'python manage.py runserver 0.0.0.0:8000'
+    volumes:
+      - ./api/:/app/
+      - .git/:/app/.git
+    ports:
+      - 8080:8000
