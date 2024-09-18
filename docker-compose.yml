@@ -1,12 +1,22 @@
 services:
-  api:
-    build: ./api
-    container_name: ${PROJECT_NAME}_api
-    hostname: ${PROJECT_NAME}_api
+  golang:
+    build: ./golang
+    container_name: ${PROJECT_NAME}_golang
+    hostname: ${PROJECT_NAME}_golang
     user: 1000:1000
-    command: sh -c 'python manage.py runserver 0.0.0.0:8000'
+    command: ./api
     volumes:
-      - ./api/:/app/
-      - .git/:/app/.git
+      - ./golang/:/app/
     ports:
-      - 8080:8000
+      - 8090:8080
+
+  # django:
+  #   build: ./django
+  #   container_name: ${PROJECT_NAME}_django
+  #   hostname: ${PROJECT_NAME}_django
+  #   user: 1000:1000
+  #   command: sh -c 'python manage.py runserver 0.0.0.0:8000'
+  #   volumes:
+  #     - ./django/:/app/
+  #   ports:
+  #     - 8080:8000
